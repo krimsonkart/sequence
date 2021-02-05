@@ -29,6 +29,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "deploy":"AWS_PROFILE=aruntest aws s3 sync build/ s3://sequence-game-arun --acl public-read",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

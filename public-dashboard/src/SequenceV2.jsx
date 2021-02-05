@@ -106,12 +106,22 @@ const Sequence = (props) => {
   function closeModal() {
     setIsOpen(false);
   }
+  function gameComplete() {
+    return board.board.winner!==undefined;
+  }
   function replaceSelected() {
     replaceCard(cardToUse);
     setIsOpen(false);
   }
   return (
     <Container>
+      <Modal
+        isOpen={gameComplete}
+        contentLabel="Game is done"
+      >
+        <h2>Game over</h2>
+        <h2>Team {board.board.winner} won</h2>
+      </Modal>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}

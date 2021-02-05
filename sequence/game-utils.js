@@ -221,9 +221,9 @@ function play(game, { playerId, position, card, action }) {
         boardUtils.placeCoin(game.board, position, card, currentPlayer.team);
         if (boardUtils.getSequences(game.board, currentPlayer.team) >= REQUIRED_SEQUENCES[game.numTeams]) {
             game.state = GAME_STATES.COMPLETE;
+            game.board.winner = currentPlayer.team;
             notifyAll(game, utils.MSG_HEADERS.BROADCAST_WIN_ACTION, { team: currentPlayer.team });
             // notifyPlayer(currentPlayer, utils.MSG_HEADERS.PLAYER_WIN_ACTION, { team: currentPlayer.team });
-            game.winner = currentPlayer.team;
         }
         game.turn = (game.turn + 1) % game.numPlayers;
     }

@@ -1,0 +1,95 @@
+---
+extends:
+  - plugin:import/errors
+  - plugin:jest/recommended
+  - eslint:recommended
+  - airbnb-base
+  - plugin:prettier/recommended
+
+env:
+  node: true
+  es6: true
+  jest: true
+  mocha: true
+
+parserOptions:
+  ecmaVersion: 2018
+
+rules:
+  global-require: off
+  guard-for-in: off
+
+  # TODO: Remove these. They are present as error in jest/recommended
+  jest/no-export: warn
+  jest/no-identical-title: warn
+  jest/no-try-expect: warn
+  jest/valid-describe: warn
+  jest/valid-expect: warn
+
+  # TODO: Make this error
+  jest/require-to-throw-message: warn
+
+  import/no-extraneous-dependencies:
+    - error
+    - devDependencies:
+        - "**/*.test.js"
+        - "**/test/integration/**/*.js"
+        - "**/scripts/**/*.js"
+        - "**/deployment/**/*.js"
+
+  no-console: error
+  no-throw-literal: error
+  no-return-await: warn
+  no-await-in-loop: warn
+  no-continue: off
+  no-plusplus: off
+  no-param-reassign: off
+  no-restricted-syntax: off
+  class-methods-use-this: off
+  no-restricted-modules:
+    - error
+    - patterns:
+        - "@productiv-service/*"
+  max-params:
+    - error
+    - max: 6
+
+  camelcase:
+    - warn
+    - properties: never
+      allow:
+        - "^test_"
+        - "^target_"
+        - "__test_only__"
+        - "__scripts_only__"
+
+  no-use-before-define:
+    - error
+    - functions: false
+      classes: true
+      variables: true
+
+  no-underscore-dangle:
+    - error
+    - allowAfterThis: true
+      allow:
+        - "__test_only__"
+        - "__scripts_only__"
+        - "__package_only__"
+        - "__meta__"
+        - "_throw"
+        - "__all__"
+
+overrides:
+  - files:
+      - "packages/dev-ops/**/*.js"
+      - "packages/testing/**/*.js"
+      - "packages/fe-test-utils/**/*.js"
+      - "services/public-dashboard/**/*"
+      - "tools/**/*.js"
+      - "**/*.test.js"
+      - "**/scripts/**/*.js"
+      - "**/test/**/*.js"
+      - "**/deployment/**/*.js"
+    rules:
+      no-console: off

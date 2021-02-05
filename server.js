@@ -11,15 +11,15 @@ const io = require('socket.io')(http,{
 });
 const { SequenceServer } = require('./sequence/game-server');
 
-app.use(express.static(path.join(__dirname, '../public-dashboard/build')));
+app.use(express.static(path.join(__dirname, 'public-dashboard/build')));
 app
-    .use(express.static(path.join(__dirname, '../public')))
-    .use(express.static(path.join(__dirname, '../public-dashboard/public')))
+    .use(express.static(path.join(__dirname, 'public')))
+    .use(express.static(path.join(__dirname, 'public-dashboard/public')))
     // .set('views', path.join(__dirname, '../views'))
     // .set('view engine', 'ejs')
     // .get('/', (req, res) => res.render('pages/index'))
     .get('/', (req,res) => {
-        res.sendFile(path.join(__dirname, '../public-dashboard/public/index.html'));
+        res.sendFile(path.join(__dirname, 'public-dashboard/public/index.html'));
     });
 const server = new SequenceServer();
 server.start(io);

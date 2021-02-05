@@ -1,0 +1,5 @@
+**/node_modules/*
+**/lib/*
+documentation/themes
+**/public-dashboard/coverage/*
+**/public-dashboard/dist/*

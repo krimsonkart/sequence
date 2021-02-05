@@ -1,0 +1,24 @@
+.highlight {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    /*background-image: url("../static/img/redcoin2.png");*/
+    -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 255, 0, 0.67);
+    -moz-box-shadow: 0px 0px 30px 0px rgba(0, 255, 0, 0.67);
+    box-shadow: 0px 0px 30px 0px rgba(0, 255, 0, 0.67);
+}
+
+.container:hover .img {
+    opacity: 0.3;
+}
+.coin {
+    transition: 0.5s ease;
+    opacity: 1;
+    position: absolute;
+    width: 60%;
+    height: 40%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}

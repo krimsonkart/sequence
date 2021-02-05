@@ -2,8 +2,8 @@
   "games": {
     "1": {
       "id": 1,
-      "turn": 1,
-      "deckPosition": 70,
+      "turn": 0,
+      "deckPosition": 71,
       "numPlayers": 2,
       "adminUsers": [
         "111"
@@ -2348,6 +2348,31 @@
             "turn": 1
           },
           "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "3-1",
+            "cardIndex": "KS"
+          }
         }
       ],
       "deck": [
@@ -2514,7 +2539,8 @@
           "9-1": 1,
           "7-3": 0,
           "8-3": 1,
-          "2-7": 0
+          "2-7": 0,
+          "3-1": 1
         },
         "selectedByIndex": {
           "2H": 1,
@@ -2526,7 +2552,7 @@
           "8D": 1,
           "6S": 1,
           "9C": 2,
-          "KS": 1,
+          "KS": 2,
           "0H": 1,
           "5H": 2,
           "9D": 2,
@@ -2616,9 +2642,9 @@
             "KC",
             "JS",
             "8S",
-            "KS",
             "6H",
-            "0S"
+            "0S",
+            "5C"
           ],
           "inactive": false,
           "team": 1

@@ -28,6 +28,6 @@ app
 // });
 const server = new SequenceServer();
 server.start(io);
-http.listen(PORT, function() {
-    console.log('Server started!');
-});
+http.listen(PORT,
+    () => console.log(`Listening on ${ PORT }`)
+);

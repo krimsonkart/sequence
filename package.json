@@ -1,0 +1,30 @@
+{
+  "name": "node-js-getting-started",
+  "version": "0.3.0",
+  "description": "A sample Node.js app using Express 4",
+  "engines": {
+    "node": "14.x"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "webpack",
+    "test": "node test.js"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heroku/node-js-getting-started"
+  },
+  "keywords": [
+    "sequence",
+    "krimsonkart",
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
+}

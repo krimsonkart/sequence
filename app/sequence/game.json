@@ -1,0 +1,2651 @@
+{
+  "games": {
+    "1": {
+      "id": 1,
+      "turn": 1,
+      "deckPosition": 70,
+      "numPlayers": 2,
+      "adminUsers": [
+        "111"
+      ],
+      "numTeams": 2,
+      "state": "inProgress",
+      "numCards": 7,
+      "history": [
+        {
+          "msg": "playerJoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerJoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "5-4",
+            "cardIndex": "2H"
+          }
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "4-5",
+            "cardIndex": "4H"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "4-5",
+            "cardIndex": "JH"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "7-0",
+            "cardIndex": "KC"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "8-1",
+            "cardIndex": "7S"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "4-9",
+            "cardIndex": "AS"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "4-5",
+            "cardIndex": "4H"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "4-6",
+            "cardIndex": "AH"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "9-6",
+            "cardIndex": "8D"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "8-2",
+            "cardIndex": "6S"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "6-2",
+            "cardIndex": "9C"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "3-9",
+            "cardIndex": "KS"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "6-5",
+            "cardIndex": "0H"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "6-8",
+            "cardIndex": "5H"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "9-5",
+            "cardIndex": "9D"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "5-8",
+            "cardIndex": "6H"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "7-2",
+            "cardIndex": "JC"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "4-0",
+            "cardIndex": "9C"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "6-3",
+            "cardIndex": "JD"
+          }
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "5-0",
+            "cardIndex": "0C"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "6-1",
+            "cardIndex": "9S"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "8-4",
+            "cardIndex": "4S"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "8-5",
+            "cardIndex": "3S"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "1-5",
+            "cardIndex": "AH"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "0-3",
+            "cardIndex": "4S"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "9-7",
+            "cardIndex": "7D"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "7-6",
+            "cardIndex": "AD"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "8-9",
+            "cardIndex": "5D"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "9-3",
+            "cardIndex": "QD"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "7-9",
+            "cardIndex": "4D"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "9-8",
+            "cardIndex": "6D"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "5-3",
+            "cardIndex": "7H"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "9-2",
+            "cardIndex": "KD"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "0-2",
+            "cardIndex": "3S"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "2-2",
+            "cardIndex": "2D"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "3-6",
+            "cardIndex": "2C"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "2-3",
+            "cardIndex": "3D"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "3-5",
+            "cardIndex": "3C"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "8-6",
+            "cardIndex": "2S"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "6-6",
+            "cardIndex": "QH"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "0-1",
+            "cardIndex": "2S"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "2-4",
+            "cardIndex": "4D"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "4-1",
+            "cardIndex": "QS"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "4-4",
+            "cardIndex": "5H"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "1-3",
+            "cardIndex": "3C"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "0-6",
+            "cardIndex": "7S"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "4-7",
+            "cardIndex": "9D"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "1-7",
+            "cardIndex": "QH"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "7-5",
+            "cardIndex": "AC"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "2-9",
+            "cardIndex": "QS"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "5-5",
+            "cardIndex": "3H"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "9-1",
+            "cardIndex": "AD"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "7-3",
+            "cardIndex": "QC"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "position": "8-3",
+            "cardIndex": "5S"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          }
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 0
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "111",
+            "position": "2-7",
+            "cardIndex": "JD"
+          }
+        },
+        {
+          "msg": "coinAction",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {
+            "playerId": "113",
+            "action": "replace",
+            "cardIndex": "7D"
+          }
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerInactive",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        },
+        {
+          "msg": "playerRejoined",
+          "payload": {
+            "turn": 1
+          },
+          "additionalParams": {}
+        }
+      ],
+      "deck": [
+        "2S",
+        "QH",
+        "4H",
+        "4H",
+        "2H",
+        "0S",
+        "9C",
+        "0C",
+        "0H",
+        "KC",
+        "3D",
+        "KC",
+        "9S",
+        "AS",
+        "JH",
+        "6S",
+        "7S",
+        "AH",
+        "8D",
+        "5D",
+        "JS",
+        "KS",
+        "JC",
+        "6H",
+        "9D",
+        "5H",
+        "3S",
+        "4S",
+        "JD",
+        "9C",
+        "4S",
+        "JS",
+        "QD",
+        "AH",
+        "AD",
+        "7D",
+        "2H",
+        "7D",
+        "6D",
+        "4D",
+        "3C",
+        "2C",
+        "QC",
+        "7H",
+        "KD",
+        "3S",
+        "2D",
+        "8S",
+        "JH",
+        "3C",
+        "2S",
+        "QH",
+        "AC",
+        "4D",
+        "QS",
+        "5H",
+        "QC",
+        "7S",
+        "9D",
+        "5S",
+        "3H",
+        "QS",
+        "9S",
+        "AD",
+        "KD",
+        "KS",
+        "JD",
+        "6H",
+        "6C",
+        "0S",
+        "5C",
+        "5C",
+        "JC",
+        "QD",
+        "8H",
+        "6S",
+        "AC",
+        "KH",
+        "5D",
+        "6C",
+        "7C",
+        "0D",
+        "KH",
+        "7C",
+        "4C",
+        "8C",
+        "8D",
+        "5S",
+        "AS",
+        "2C",
+        "7H",
+        "0C",
+        "9H",
+        "9H",
+        "2D",
+        "8S",
+        "8H",
+        "3H",
+        "6D",
+        "4C",
+        "3D",
+        "8C",
+        "0H",
+        "0D"
+      ],
+      "board": {
+        "selectedPositions": {
+          "0-0": "*",
+          "9-0": "*",
+          "0-9": "*",
+          "9-9": "*",
+          "5-4": 0,
+          "7-0": 1,
+          "8-1": 0,
+          "4-9": 1,
+          "4-6": 1,
+          "9-6": 0,
+          "8-2": 1,
+          "6-2": 0,
+          "3-9": 1,
+          "6-5": 0,
+          "4-5": 0,
+          "6-8": 1,
+          "9-5": 0,
+          "5-8": 1,
+          "7-2": 0,
+          "4-0": 1,
+          "6-3": 0,
+          "5-0": 1,
+          "6-1": 0,
+          "8-4": 1,
+          "8-5": 0,
+          "1-5": 1,
+          "0-3": 0,
+          "9-7": 1,
+          "7-6": 0,
+          "8-9": 1,
+          "9-3": 0,
+          "7-9": 1,
+          "9-8": 0,
+          "5-3": 1,
+          "9-2": 0,
+          "0-2": 1,
+          "2-2": 0,
+          "3-6": 1,
+          "2-3": 0,
+          "3-5": 1,
+          "8-6": 0,
+          "6-6": 1,
+          "0-1": 0,
+          "2-4": 1,
+          "4-1": 0,
+          "4-4": 1,
+          "1-3": 0,
+          "0-6": 1,
+          "4-7": 0,
+          "1-7": 1,
+          "7-5": 0,
+          "2-9": 1,
+          "5-5": 0,
+          "9-1": 1,
+          "7-3": 0,
+          "8-3": 1,
+          "2-7": 0
+        },
+        "selectedByIndex": {
+          "2H": 1,
+          "4H": 0,
+          "KC": 1,
+          "7S": 2,
+          "AS": 1,
+          "AH": 2,
+          "8D": 1,
+          "6S": 1,
+          "9C": 2,
+          "KS": 1,
+          "0H": 1,
+          "5H": 2,
+          "9D": 2,
+          "6H": 1,
+          "0C": 2,
+          "8H": 1,
+          "9S": 1,
+          "4S": 2,
+          "3S": 2,
+          "7D": 2,
+          "AD": 2,
+          "5D": 1,
+          "QD": 1,
+          "4D": 2,
+          "6D": 1,
+          "7H": 1,
+          "KD": 1,
+          "2D": 1,
+          "2C": 1,
+          "3D": 1,
+          "3C": 2,
+          "2S": 2,
+          "QH": 2,
+          "QS": 2,
+          "AC": 1,
+          "3H": 1,
+          "QC": 1,
+          "5S": 1
+        },
+        "teamSequences": {
+          "0": [
+            [
+              "6-3",
+              "5-4",
+              "4-5",
+              "7-2",
+              "8-1",
+              "9-0"
+            ],
+            [
+              "5-5",
+              "4-5",
+              "6-5",
+              "7-5",
+              "8-5",
+              "9-5"
+            ]
+          ]
+        },
+        "cardsLocked": {
+          "6-3": 0,
+          "5-4": 0,
+          "4-5": 0,
+          "7-2": 0,
+          "8-1": 0,
+          "9-0": 0,
+          "5-5": 0,
+          "6-5": 0,
+          "7-5": 0,
+          "8-5": 0,
+          "9-5": 0
+        }
+      },
+      "players": [
+        {
+          "playerId": "111",
+          "gameId": 1,
+          "position": 0,
+          "hand": [
+            "JS",
+            "2H",
+            "JH",
+            "QC",
+            "9S",
+            "KD",
+            "6C"
+          ],
+          "inactive": false,
+          "team": 0
+        },
+        {
+          "playerId": "113",
+          "gameId": 1,
+          "position": 1,
+          "hand": [
+            "0S",
+            "KC",
+            "JS",
+            "8S",
+            "KS",
+            "6H",
+            "0S"
+          ],
+          "inactive": false,
+          "team": 1
+        }
+      ]
+    }
+  },
+  "players": {
+    "1": {
+      "id": "1",
+      "games": []
+    },
+    "111": {
+      "id": "111",
+      "games": [
+        1
+      ]
+    },
+    "112": {
+      "id": "112",
+      "games": []
+    },
+    "113": {
+      "id": "113",
+      "games": [
+        1
+      ]
+    }
+  }
+}

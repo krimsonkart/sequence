@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import socketIOClient from "socket.io-client";
 
 const NEW_CHAT_MESSAGE_EVENT = "newChatMessage"; // Name of the event
-const SOCKET_SERVER_URL = "http://localhost:8081";
+const SOCKET_SERVER_URL = 'https://evening-lowlands-19146.herokuapp.com/';
+// const SOCKET_SERVER_URL = "http://localhost:8081";
+// const SOCKET_SERVER_URL = "http://localhost:5000";
 const MSG_HEADERS = {
   NEW_GAME: 'gameCreated',
   PLAY_CONFIRM: 'playConfirm',
@@ -69,7 +71,7 @@ const useChat = (gameId, playerId) => {
     );
   };
 
-  return { messages, sendMessage };
+  return { messages, setMessages, sendMessage };
 };
 
 export default useChat;

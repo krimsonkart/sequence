@@ -8,7 +8,8 @@ const logger = utils.getLogger({});
 
 let DATA_FILE_PATH = __dirname + '/game.json';
 class SequenceServer {
-    constructor() {
+    constructor(dbClient) {
+        this.dbClient = dbClient;
         if (fs.existsSync(DATA_FILE_PATH)) {
             const { players, games } = JSON.parse(fs.readFileSync(DATA_FILE_PATH, 'utf-8'));
             this.games = games; //_.mapValues(games, game => Game.fromCopy(game));
@@ -101,7 +102,7 @@ class SequenceServer {
     disconnect(socket) {
         const player = this.players[socket.playerId];
         if (player) {
-          _.remove(this.playerSockets[socket.playerId],x=>x.id===socket.id)
+            _.remove(this.playerSockets[socket.playerId], x => x.id === socket.id);
             // player.disconnect(socket);
             const game = this.games[socket.gameId];
             if (game) {

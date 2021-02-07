@@ -1,4 +1,5 @@
 # Node build artifacts
+public-dashboard/build/*
 node_modules
 npm-debug.log
 
@@ -10,3 +11,4 @@ npm-debug.log
 # Docker
 Dockerfile
 docker-compose.yml
+/public-dashboard/build/

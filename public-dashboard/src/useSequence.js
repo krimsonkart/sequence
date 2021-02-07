@@ -3,9 +3,11 @@ import socketIOClient from 'socket.io-client';
 import _ from 'lodash';
 import { useAlert } from 'react-alert';
 
-const SOCKET_SERVER_URL = 'https://evening-lowlands-19146.herokuapp.com/';
+const SOCKET_SERVER_URL = process.env.REACT_APP_SOCKET_SERVER_URL;
+// const SOCKET_SERVER_URL = 'https://evening-lowlands-19146.herokuapp.com/';
 // const SOCKET_SERVER_URL = 'http://localhost:8081/';
 // const SOCKET_SERVER_URL = 'http://localhost:5000/';
+
 const MSG_HEADERS = {
     NEW_GAME: 'gameCreated',
     PLAY_CONFIRM: 'playConfirm',

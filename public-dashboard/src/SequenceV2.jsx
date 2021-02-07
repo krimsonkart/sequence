@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { Container, Row, Col, Media, Card, CardImg, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { useAlert } from 'react-alert';
 import Modal from 'react-modal';
 

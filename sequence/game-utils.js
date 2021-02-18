@@ -4,10 +4,10 @@ const utils = require('./utils');
 const boardUtils = require('./board-utils');
 
 const NUM_CARDS = {
-    '2': 7,
-    '3': 6,
-    '4': 6,
-    '6': 5,
+    2: 7,
+    3: 6,
+    4: 6,
+    6: 5,
 };
 const HISTORY_LEVELS = {
     [utils.MSG_HEADERS.BROADCAST_PLAYER_REJOINED]: 20,
@@ -83,7 +83,8 @@ function leave(game, playerId) {
         {
             turn: game.turn,
             players: getPlayersToBroadCast(game),
-        },{},
+        },
+        {},
         true
     );
 }
@@ -103,7 +104,8 @@ function rejoin(game, playerId, socket) {
         {
             turn: game.turn,
             players: getPlayersToBroadCast(game),
-        },{},
+        },
+        {},
         true
     );
     notifyPlayer(player, utils.MSG_HEADERS.PLAYER_RECONNECTED, getStateForPlayer(game, player.playerId));
@@ -158,7 +160,9 @@ function join(game, player, position, socket) {
             notifyPlayer(currentPlayer, utils.MSG_HEADERS.PLAYER_RECONNECTED, getStateForPlayer(game));
         }
     }
-    socket.gameId = game.id;
+    if (socket) {
+        socket.gameId = game.id;
+    }
     logger.info({ gameId: game.id, playerId: player.id }, `Joined game`);
     playerJoinedGame(player, game.id);
     notifyAll(
@@ -167,7 +171,8 @@ function join(game, player, position, socket) {
         {
             turn: game.turn,
             players: getPlayersToBroadCast(game),
-        },{},
+        },
+        {},
         true
     );
     // game.playerSockets[player.id].join(game.id);
@@ -186,7 +191,6 @@ function start(game, playerId) {
     // TODO: Check if player is admin or not
     logger.info({ gameId: game.id }, `${playerId} is starting the game`);
     game.deck = utils.initializeDeckV2();
-    game.board = boardUtils.newBoard();
     // game.board.initializeBoard();
     utils.shuffleDeck(game.deck);
     for (let cardNum = 0; cardNum < game.numCards; cardNum++) {
@@ -222,6 +226,7 @@ function play(game, { playerId, position, card, action }) {
         if (boardUtils.getSequences(game.board, currentPlayer.team) >= REQUIRED_SEQUENCES[game.numTeams]) {
             game.state = GAME_STATES.COMPLETE;
             game.board.winner = currentPlayer.team;
+            game.winner = currentPlayer.team;
             notifyAll(game, utils.MSG_HEADERS.BROADCAST_WIN_ACTION, { team: currentPlayer.team });
             // notifyPlayer(currentPlayer, utils.MSG_HEADERS.PLAYER_WIN_ACTION, { team: currentPlayer.team });
         }
@@ -244,15 +249,17 @@ function play(game, { playerId, position, card, action }) {
         hand: currentPlayer.hand,
     });
 }
-function newGame({ id, numPlayers, adminUser, numTeams }) {
+function newGame({ id, numPlayers, name, adminUser, numTeams }) {
     const game = {};
+    game.board = boardUtils.newBoard();
     game.id = id;
+    game.name = name;
+    game.numPlayers = Number(numPlayers);
+    game.numTeams = Number(numTeams);
+    game.adminUsers = [adminUser];
     game.turn = 0;
     game.deckPosition = 0;
-    game.numPlayers = numPlayers;
     game.adminUsers = [];
-    game.adminUsers.push(adminUser);
-    game.numTeams = numTeams;
     game.state = GAME_STATES.CREATED;
     game.numCards = NUM_CARDS[game.numPlayers];
     game.history = [];
@@ -261,4 +268,11 @@ function newGame({ id, numPlayers, adminUser, numTeams }) {
     return game;
 }
 
-module.exports = { newGame, start, play, join, leave, rejoin };
+function getGameDetails(game) {
+    return {
+        ..._.pick(game, ['id', 'turn', 'numPlayers', 'numTeams', 'state', 'numCards', 'board', 'winner', 'adminUsers']),
+        players: game.players.map(p => _.pick(p, ['playerId', 'email', 'name'])),
+    };
+}
+
+module.exports = { newGame, start, play, join, leave, rejoin, getGameDetails };

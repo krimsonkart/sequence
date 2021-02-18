@@ -1,61 +1,44 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-
-import "./Home.css";
+import useLogin from './useLogin';
+import GoogleLogin from 'react-google-login';
+import { ActionCreators } from './redux/reducers/user';
+import { connect } from 'react-redux';
+import React from 'react';
 
 const Login = () => {
-  const [userId, setUserId] = React.useState("");
-  const [userName, setUserName] = React.useState("");
+    // const [user, setUser] = useState(''); // Sent and received messages
+    const { userEmail, setUserEmail, userName, setUserName, setUserId } = useLogin();
+    function responseGoogle(response) {
+        let name = response.profileObj.name;
+        console.log(`Logged in with google`);
+        let email = response.profileObj.email;
+        setUserId(email);
+        // setUserEmail(email);
+        setUserName(name);
+        window.localStorage.setItem('userEmail', email);
+        window.localStorage.setItem('userName', name);
+        window.localStorage.setItem('userId', email);
+        // this.props.dispatch(ActionCreators.login(userObj));
+    }
+    function userNotSet() {
+        // return this.props.user
+        return !userEmail;
+    }
 
-  const handleUserIdChange = (event) => {
-    setUserId(event.target.value);
-  };
-
-  const handleUserNameChange = (event) => {
-    setUserName(event.target.value);
-  };
-  const handleLogin = () => {
-    this.props.setUserId(this.state.userName);
-    this.props.setUserName(this.state.userName);
-  };
-  return (
-    <div className="home-container">
-      <input
-        type="text"
-        placeholder="User ID"
-        value={userId}
-        onChange={handleUserIdChange}
-        className="text-input-field"
-      />
-      <input
-        type="text"
-        placeholder="User Name"
-        value={userName}
-        onChange={handleUserNameChange}
-        className="text-input-field"
-      />
-      <button className="add-todo" onClick={handleLogin}>
-        Login
-      </button>
-      <Link to={`/rooms`} className="enter-room-button">
-        Join room
-      </Link>
-    </div>
-  );
+    return userNotSet() ? (
+        <GoogleLogin
+            clientId="927228406323-fdhfbqgcto7opgu54u1h7qk3p6754iq8.apps.googleusercontent.com"
+            buttonText="Login"
+            onSuccess={responseGoogle}
+            isSignedIn={true}
+            cookiePolicy={'single_host_origin'}
+        />
+    ) : (
+        <span>{userName}</span>
+    );
 };
-
-const setUserId = (userId) => ({
-  type: "userId",
-  payload: {
-    userId,
-  },
-});
-const setUserName = (userName) => ({
-  type: "userName",
-  payload: {
-    userName,
-  },
-});
-
-export default connect(null, { setUserId, setUserName })(Login);
+const mapStateToProps = state => {
+    return {
+        user: state.user,
+    };
+};
+export default connect(mapStateToProps)(Login);

@@ -4,8 +4,8 @@ import "./ChatRoom.css";
 import useChat from "./useChat";
 
 const ChatRoom = (props) => {
-    const { gameId, playerId } = props.match.params; // Gets gameId from URL
-    const { messages, setMessages, sendMessage } = useChat(gameId,playerId); // Creates a websocket and manages messaging
+    // const { gameId, playerId } = props.match.params; // Gets gameId from URL
+    const { messages, setMessages, sendMessage } = useChat(); // Creates a websocket and manages messaging
     const [newMessage, setNewMessage] = React.useState(""); // Message to be sent
 
     const handleNewMessageChange = (event) => {
@@ -24,7 +24,7 @@ const ChatRoom = (props) => {
 
     return (
         <div className="chat-room-container">
-            <h1 className="room-name">Room: {gameId}</h1>
+            <h1 className="room-name">Room</h1>
             <div className="messages-container">
                 <ol className="messages-list">
                     {messages.map((message, i) => (

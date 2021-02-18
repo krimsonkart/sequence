@@ -7,6 +7,7 @@ const utils = require('./utils');
 const logger = utils.getLogger({});
 
 let DATA_FILE_PATH = __dirname + '/game.json';
+
 class SequenceServer {
     constructor(dbClient) {
         this.dbClient = dbClient;
@@ -31,7 +32,6 @@ class SequenceServer {
                 login: this.loginUser,
                 join: this.joinGame,
                 start: this.startGame,
-                create: this.createGame,
                 disconnect: this.disconnect,
                 play: this.playMove,
             };
@@ -51,10 +51,11 @@ class SequenceServer {
             const { playerId, userName, gameId } = socket.handshake.query;
             logger.info(`A user: ${playerId} connected on socket: ${socketId}`);
             this.sockets[socketId] = socket;
+            // this.playerSockets[playerId] =
             if (!playerId) {
-                throw `User id not specified`;
+                throw `User not specified`;
             }
-            this.loginUser(socket, { user: { id: playerId, name: userName } });
+            this.loginUser(socket, { user: { playerId, userName } });
             // if (!gameId) {
             //     throw `Game id not specified`;
             // }
@@ -99,6 +100,18 @@ class SequenceServer {
         gameUtils.play(currentGame, { ...params, playerId: socket.playerId });
     }
 
+    getGame(gameId) {
+        let game = this.games[gameId];
+        if (!game) {
+            throw 'Game not found';
+        }
+        return gameUtils.getGameDetails(game);
+    }
+
+    listGames() {
+        return _.values(this.games).map(game => gameUtils.getGameDetails(gameUtils.getGameDetails(game)));
+    }
+
     disconnect(socket) {
         const player = this.players[socket.playerId];
         if (player) {
@@ -113,7 +126,7 @@ class SequenceServer {
         delete this.sockets[socket.id];
     }
 
-    loginUser(socket, { user: { id: playerId, name: userName } } = {}) {
+    loginUser(socket, { user: { playerId, userName } } = {}) {
         if (!playerId) {
             console.error(`Something wrong. Bailing out!`);
             return;
@@ -121,7 +134,7 @@ class SequenceServer {
         logger.info(`Assigning ${socket.id} to ${playerId}`);
         socket.playerId = playerId;
         if (!this.players[playerId]) {
-            this.players[playerId] = { id: playerId, name: userName, games: [] };
+            this.players[playerId] = { id: playerId, name:userName, games: [] };
         }
         this.playerSockets[playerId] = this.playerSockets[playerId] || [];
         this.playerSockets[playerId].push(socket);
@@ -129,17 +142,27 @@ class SequenceServer {
         // fs.writeFileSync(__dirname + '/game.json', JSON.stringify({ games: this.games, players: this.players }));
     }
     logoutUser(socket, { user } = {}) {}
-    createGame(socket, { game, forceCreate }) {
-        const gameId = game.id || uuid();
+    createGame({ game, forceCreate }) {
+        const gameId = game.id || this.getUniqueGameId();
         if (this.games[gameId] && !forceCreate) {
             throw `Game with ${gameId} already exists`;
         }
         let gameObj = { ...game, id: gameId };
         this.games[gameId] = gameUtils.newGame(gameObj);
         logger.info({ game: gameObj }, `Created`);
+        return { gameId };
         // this.io.emit(utils.MSG_HEADERS.NEW_GAME, { game: gameObj });
         // fs.writeFileSync(__dirname + '/game.json', JSON.stringify({ games: this.games, players: this.players }));
     }
+
+    getUniqueGameId() {
+        let unique = uuid().split('-')[0];
+        if (this.games[unique]) {
+            return this.getUniqueGameId();
+        }
+        return unique;
+    }
+
     joinGame(socket, { gameId, playerId, position }) {
         let playerCached = this.players[playerId];
         // if (!this.playerSockets[playerId]) {
@@ -155,7 +178,7 @@ class SequenceServer {
         if (!currentGame) {
             throw 'Game does not exist';
         }
-        gameUtils.join(currentGame, playerCached, position, socket);
+        gameUtils.join(currentGame, playerCached, position, socket.playerId === playerId ? socket : null);
         // this.io.in(gameId).emit('playerJoined', { player: _.omit(playerCached, 'sockets') });
     }
     startGame(socket, { gameId }) {

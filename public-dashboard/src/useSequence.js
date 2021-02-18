@@ -99,16 +99,22 @@ function initializeBoard() {
     }
     return board;
 }
-const useSequence = (gameId, playerId, setGameComplete) => {
+const useSequence = (gameId, setGameComplete, setPlayersModalOpen) => {
+    const playerId = window.localStorage.getItem('userEmail');
+    const userName = window.localStorage.getItem('userName');
     const alert = useAlert();
     const globalBoard = initializeBoard();
-    const [position, setPosition] = useState(0); // Sent and received messages
-    const [turn, setTurn] = useState(0); // Sent and received messages
-    const [board, setBoard] = useState([]); // Sent and received messages
-    const [hand, setHand] = useState([]); // Sent and received messages
-    const [players, setPlayers] = useState([]); // Sent and received messages
-    const [history, setHistory] = useState([]); // Sent and received messages
-    const [errors, setErrorsList] = useState([]); // Sent and received messages
+    const [position, setPosition] = useState(-1);
+    const [turn, setTurn] = useState(0);
+    const [gameState, setGameState] = useState('created');
+    const [board, setBoard] = useState([]);
+    const [hand, setHand] = useState([]);
+    const [numPlayers, setNumPlayers] = useState(0);
+    const [numTeams, setNumTeams] = useState(0);
+    const [players, setPlayers] = useState([]);
+    const [history, setHistory] = useState([]);
+    const [errors, setErrorsList] = useState([]);
+    const [gameLoaded, setGameLoaded] = useState(false);
     const socketRef = useRef();
 
     function setErrors(errs) {
@@ -132,7 +138,7 @@ const useSequence = (gameId, playerId, setGameComplete) => {
     function setPlayersList(players) {
         setPlayers(players);
         let currentPosition = players.findIndex(p => p.playerId === playerId);
-        if (currentPosition) {
+        if (currentPosition !== -1) {
             setPosition(currentPosition);
         }
     }
@@ -151,22 +157,59 @@ const useSequence = (gameId, playerId, setGameComplete) => {
         setHistory(history);
     }
 
-    function startGame({ board, hand, players, history, turn }) {
+    function startGameAcknowledge({ board, hand, players, history, turn }) {
         setCompleteBoard(board);
-        setHistory(history);
+        // setHistory(history);
         setHand(hand);
         setTurn(turn);
         setPlayersList(players);
     }
 
     useEffect(() => {
+        fetch(`${SOCKET_SERVER_URL}api/sequence/game/${gameId}`)
+            .then(resp => resp.json())
+            .then(resp => {
+                // setGame(_.omit(resp, 'board'));
+                setTurn(turn);
+                setGameState(resp.state);
+                setPlayersList(resp.players);
+                setNumPlayers(resp.numPlayers);
+                setNumTeams(resp.numTeams);
+                setCompleteBoard(resp.board);
+                if (position < 0 || resp.state === 'created') {
+                    setPlayersModalOpen(true);
+                }
+                setGameLoaded(true);
+                let playerJoined = false;
+                if (resp.players.find(p => p.playerId === playerId)) {
+                    playerJoined = true;
+                }
+                if (!playerJoined) {
+                } else {
+                    createSocket();
+                    // Destroys the socket reference
+                    // when the connection is closed
+                }
+            });
+        return () => {
+            if (socketRef) {
+                socketRef.current.disconnect();
+            }
+        };
+    }, [gameId]);
+    function createSocket() {
+        console.log('Creating socket')
+        if(socketRef.current){
+            console.log('Socket already created')
+            return ;
+        }
         // Creates a WebSocket connection
         socketRef.current = socketIOClient(SOCKET_SERVER_URL, {
-            query: { playerId, gameId },
+            query: { playerId, gameId, userName },
         });
         // Listens for incoming messages
-        socketRef.current.on(MSG_HEADERS.START_GAME, startGame);
-        socketRef.current.on(MSG_HEADERS.PLAYER_RECONNECTED, startGame);
+        socketRef.current.on(MSG_HEADERS.START_GAME, startGameAcknowledge);
+        socketRef.current.on(MSG_HEADERS.PLAYER_RECONNECTED, startGameAcknowledge);
         socketRef.current.on(MSG_HEADERS.PLAY_CONFIRM, confirmPlayAction);
         socketRef.current.on(MSG_HEADERS.BROADCAST_COIN_ACTION, coinAction);
         socketRef.current.on(MSG_HEADERS.BROADCAST_PLAYER_JOINED, playerUpdate);
@@ -177,15 +220,19 @@ const useSequence = (gameId, playerId, setGameComplete) => {
             console.log(`Error: ${err}`);
             alert.show(err);
         });
-        // Destroys the socket reference
-        // when the connection is closed
-        return () => {
-            socketRef.current.disconnect();
-        };
-    }, [gameId]);
+    }
 
     // Sends a message to the server that
     // forwards it to all users in the same room
+    const joinGame = position => {
+        if (!socketRef.current) {
+            createSocket();
+        }
+        socketRef.current.emit('join', { position, gameId, playerId });
+    };
+    const startGame = () => {
+        socketRef.current.emit('start', { gameId });
+    };
     const placeAction = (card, position) => {
         socketRef.current.emit('play', { card, position });
     };
@@ -194,16 +241,22 @@ const useSequence = (gameId, playerId, setGameComplete) => {
     };
     return {
         board,
+        gameState,
         hand,
         setHand,
         players,
         errors,
         setErrors,
+        gameLoaded,
         history,
         turn,
         position,
         placeAction,
         replaceCard,
+        joinGame,
+        startGame,
+        numTeams,
+        numPlayers,
     };
 };
 

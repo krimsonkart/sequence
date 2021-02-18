@@ -1,4 +1,3 @@
-import { View, Mask } from "mdbreact";
 import React from "react";
 import _ from "lodash";
 import { Container, Row, Col, Media, Card, CardImg } from "react-bootstrap";

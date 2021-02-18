@@ -11,4 +11,5 @@ npm-debug.log
 # Docker
 Dockerfile
 docker-compose.yml
-/public-dashboard/build/
+/material-dashboard-react-master/
+/black-dashboard-react-master/

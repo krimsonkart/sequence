@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import _ from 'lodash';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Navbar, Nav, Spinner, Button, Modal } from 'react-bootstrap';
 import { useAlert } from 'react-alert';
-import Modal from 'react-modal';
+// import Modal from 'react-modal';
 
 import './Sequence.css';
 import useSequence from './useSequence';
+import useLogin from './useLogin';
+import Login from './Login';
 const TEAM_COINS = { 0: 'red.png', 1: 'green.png', 2: 'blue.png' };
 function getImagePath(index) {
     let imagePath = `${index}.png`;
@@ -24,32 +26,37 @@ function isSingleEyedJack(cardIndex) {
 }
 
 const Sequence = props => {
+    const { userName } = useLogin();
     const alert = useAlert();
     const [gameComplete, setGameComplete] = React.useState(false);
-    const { gameId, playerId } = props.match.params; // Gets roomId from URL
+    const [cardToUse, setCardToUse] = React.useState(''); // Message to be sent
+    const [selectedCardIndex, setSelectedCardIndex] = React.useState(''); // Message to be sent
+    const [isReplaceCardModalOpen, setIsReplaceModalOpen] = React.useState(false);
+    const [isPlayersModalOpen, setPlayersModalOpen] = React.useState(false);
+    const { gameId } = props.match.params; // Gets roomId from URL
     const {
         board,
+        gameLoaded,
         hand,
         setHand,
         players,
         position,
-        errors,
-        setErrors,
         history,
+        startGame,
+        joinGame,
         turn,
         placeAction,
-        globalBoard,
+        numTeams,
+        numPlayers,
+        gameState,
         replaceCard,
-    } = useSequence(gameId, playerId, setGameComplete); // Creates a websocket and manages messaging
-    const [cardToUse, setCardToUse] = React.useState(''); // Message to be sent
-    const [selectedCardIndex, setSelectedCardIndex] = React.useState(''); // Message to be sent
-    const [modalIsOpen, setIsOpen] = React.useState(false);
+    } = useSequence(gameId, setGameComplete, setPlayersModalOpen); // Creates a websocket and manages messaging
 
     const handleHandCardSelected = (card, i) => {
         setCardToUse(card);
         setSelectedCardIndex(i);
         if (board.board.selectedByIndex[card] > 1) {
-            setIsOpen(true);
+            setIsReplaceModalOpen(true);
         }
         setHand(hand);
     };
@@ -59,22 +66,23 @@ const Sequence = props => {
     }
 
     const handlePlaceCard = (i, j, card) => {
+        if (gameState !== 'inProgress') {
+            alert.show(`Game not started`);
+            return;
+        }
         if (position !== turn) {
             console.log(`Not your turn`);
             alert.show(`Not your turn`);
-            // setErrors((errors) => [...errors, { err:`Not Your Turn`, time: Date.now() }]);
             return;
         }
         if (!cardToUse) {
             console.log(`No Card Selected`);
             alert.show(`No Card Selected`);
-            // setErrors((errors) => [...errors, { err:`No Card Selected`, time: Date.now() }]);
             return;
         }
         if (!isSingleEyedJack(cardToUse) && !isDoubleEyedJack(cardToUse) && cardToUse !== card) {
             console.log(`Not the selected card`);
             alert.show(`Not the selected card`);
-            // setErrors((errors) => [...errors, { err:`Not the selected card`, time: Date.now() }]);
             return;
         }
         placeAction(cardToUse, `${i}-${j}`);
@@ -88,75 +96,163 @@ const Sequence = props => {
     function cardSelected(i) {
         return selectedCardIndex === i;
     }
-    function closeModal() {
-        setIsOpen(false);
+    function closeReplaceCardModal() {
+        setIsReplaceModalOpen(false);
     }
     function replaceSelected() {
         replaceCard(cardToUse);
-        setIsOpen(false);
+        setIsReplaceModalOpen(false);
     }
+
+    function gameStart() {
+        startGame();
+        setPlayersModalOpen(false);
+    }
+
+    function getGameComponent() {
+        return gameLoaded ? (
+            <Container>
+                <Modal show={gameComplete}>
+                    <Modal.Header>Game over</Modal.Header>
+                    <Modal.Body>Team {_.get(board, 'board.winner')} won</Modal.Body>
+                </Modal>
+                <Modal show={isPlayersModalOpen} onHide={() => setPlayersModalOpen(false)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Players</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Container>
+                            <Row>
+                                <Col>Position</Col>
+                                <Col>Team Number</Col>
+                                <Col>Name</Col>
+                            </Row>
+                            {_.keys(Array(numPlayers)).map((row, i) => (
+                                <Row>
+                                    <Col>{i}</Col>
+                                    <Col>{i % numTeams}</Col>
+                                    <Col>
+                                        {players[i] && !players[i].inactive ? (
+                                            <span>{players[i].name}</span>
+                                        ) : position < 0 ? (
+                                            <Button onClick={() => joinGame(i)}>Join</Button>
+                                        ) : (
+                                            <span>Waiting...</span>
+                                        )}
+                                    </Col>
+                                </Row>
+                            ))}
+                            {gameState === 'created' && !players.find(x => !x || x.inactive) ? (
+                                <Row>
+                                    <Button onClick={() => startGame()}>Start</Button>
+                                </Row>
+                            ) : (
+                                ''
+                            )}
+                        </Container>
+                    </Modal.Body>
+                </Modal>
+                <Modal show={isReplaceCardModalOpen} onHide={closeReplaceCardModal}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Players</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Container>
+                            <Row>
+                                <Col>
+                                    <Button variant="primary" onClick={replaceSelected}>
+                                        yes
+                                    </Button>
+                                </Col>
+                                <Col>
+                                    <Button variant="secondary" onClick={closeReplaceCardModal}>
+                                        no
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </Container>
+                    </Modal.Body>
+                </Modal>
+                <Row>
+                    <Col>
+                        <span>Turn: {turn}</span>
+                    </Col>
+                    <Col>
+                        <span>Selected: {cardToUse}</span>
+                    </Col>
+                    <Col>
+                        <Button onClick={() => setPlayersModalOpen(true)}>
+                            {position < 0 ? <span>Join</span> : <span>Position: {position}</span>}
+                        </Button>
+                    </Col>
+                </Row>
+                <Row>
+                    <Container fluid className="container">
+                        {getBoardToDraw().map((row, i) => (
+                            <Row key={`row${i}`}>
+                                {row.map((card, j) => {
+                                    const coin = getTeamCoin(board.board, i, j);
+                                    return (
+                                        <Col>
+                                            <Card onClick={() => handlePlaceCard(i, j, card)}>
+                                                <Card.Img
+                                                    alt="Card"
+                                                    img-border-primary
+                                                    src={`${process.env.PUBLIC_URL}/img/${getImagePath(card)}`}
+                                                />
+                                                {coin && <img src={coin} className="coin img-responsive" />}
+                                            </Card>
+                                        </Col>
+                                    );
+                                })}
+                            </Row>
+                        ))}
+                    </Container>
+                </Row>
+                <Row>
+                    <Container fluid>
+                        <Row style={{ justifyContent: 'center', padding: '20px' }}>
+                            {(hand || []).map((card, i) => (
+                                <Col>
+                                    <img
+                                        alt="Card1"
+                                        height="100vh"
+                                        src={`${process.env.PUBLIC_URL}/img/${getImagePath(card)}`}
+                                        className={cardSelected(i) ? 'border border-primary' : ''}
+                                        onClick={() => handleHandCardSelected(card, i)}
+                                    />
+                                </Col>
+                            ))}
+                        </Row>
+                    </Container>
+                </Row>
+            </Container>
+        ) : (
+            <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+            </Spinner>
+        );
+    }
+
     return (
         <Container>
-            <Modal isOpen={gameComplete} contentLabel="Game is done">
-                <h2>Game over</h2>
-                <h2>Team {_.get(board, 'board.winner')} won</h2>
-            </Modal>
-            <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Example Modal">
-                <h2>Replace card?</h2>
-                <button onClick={replaceSelected}>yes</button>
-                <button onClick={closeModal}>no</button>
-            </Modal>
+            {/*
             <Row>
-                <Col>
-                    <span>Turn: {turn}</span>
-                </Col>
-                <Col>
-                    <span>Position: {position}</span>
-                </Col>
-                <Col>
-                    <span>Selected: {cardToUse}</span>
-                </Col>
+                <Navbar bg="light" fixed="top" expand="lg">
+                    <Navbar.Brand href="#home">Sequence</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                        <Nav.Link href="#home">Home</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+
+                    <Login />
+                </Navbar>
             </Row>
-            <Row>
-                <Container fluid className="container">
-                    {getBoardToDraw().map((row, i) => (
-                        <Row key={`row${i}`}>
-                            {row.map((card, j) => {
-                                const coin = getTeamCoin(board.board, i, j);
-                                return (
-                                    <Col>
-                                        <Card onClick={() => handlePlaceCard(i, j, card)}>
-                                            <Card.Img
-                                                alt="Card"
-                                                img-border-primary
-                                                src={`${process.env.PUBLIC_URL}/img/${getImagePath(card)}`}
-                                            />
-                                            {coin && <img src={coin} className="coin img-responsive" />}
-                                        </Card>
-                                    </Col>
-                                );
-                            })}
-                        </Row>
-                    ))}
-                </Container>
-            </Row>
-            <Row>
-                <Container fluid>
-                    <Row style={{ justifyContent: 'center', padding: '20px' }}>
-                        {(hand || []).map((card, i) => (
-                            <Col>
-                                <img
-                                    alt="Card1"
-                                    height="100vh"
-                                    src={`${process.env.PUBLIC_URL}/img/${getImagePath(card)}`}
-                                    class={cardSelected(i) ? 'border border-primary' : ''}
-                                    onClick={() => handleHandCardSelected(card, i)}
-                                />
-                            </Col>
-                        ))}
-                    </Row>
-                </Container>
-            </Row>
+*/}
+            <Row>{userName ? getGameComponent() : <Login />}</Row>
         </Container>
     );
 };

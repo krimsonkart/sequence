@@ -20,7 +20,6 @@ app.use(bodyParser.json());
 const server = new SequenceServer();
 app.use(express.static(path.join(__dirname, 'public-dashboard/build')));
 app.use(express.static(path.join(__dirname, 'public')))
-    .use(express.static(path.join(__dirname, 'public-dashboard/public')))
     // .set('views', path.join(__dirname, '../views'))
     // .set('view engine', 'ejs')
     // .get('/', (req, res) => res.render('pages/index'))

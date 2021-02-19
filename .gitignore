@@ -13,3 +13,8 @@ Dockerfile
 docker-compose.yml
 /material-dashboard-react-master/
 /black-dashboard-react-master/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

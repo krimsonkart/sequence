@@ -198,7 +198,7 @@ const Sequence = props => {
                                                 <Card.Img
                                                     alt="Card"
                                                     img-border-primary
-                                                    src={`${process.env.PUBLIC_URL}/img/${getImagePath(card)}`}
+                                                    src={`https://evening-lowlands-19146.herokuapp.com/img/${getImagePath(card)}`}
                                                 />
                                                 {coin && <img src={coin} className="coin img-responsive" />}
                                             </Card>
@@ -217,7 +217,7 @@ const Sequence = props => {
                                     <img
                                         alt="Card1"
                                         height="100vh"
-                                        src={`${process.env.PUBLIC_URL}/img/${getImagePath(card)}`}
+                                        src={`https://evening-lowlands-19146.herokuapp.com/img/${getImagePath(card)}`}
                                         className={cardSelected(i) ? 'border border-primary' : ''}
                                         onClick={() => handleHandCardSelected(card, i)}
                                     />

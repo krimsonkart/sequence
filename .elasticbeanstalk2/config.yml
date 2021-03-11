@@ -1,0 +1,22 @@
+branch-defaults:
+  main:
+    environment: sequence-dev
+    group_suffix: null
+environment-defaults:
+  sequence-dev:
+    branch: null
+    repository: null
+global:
+  application_name: sequence
+  branch: null
+  default_ec2_keyname: sequence
+  default_platform: Node.js 12
+  default_region: us-west-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  repository: null
+  sc: git
+  workspace_type: Application

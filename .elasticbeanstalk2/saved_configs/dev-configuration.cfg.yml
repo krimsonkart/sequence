@@ -1,0 +1,19 @@
+EnvironmentConfigurationMetadata:
+  DateCreated: '1533920525000'
+  DateModified: '1533920525000'
+Platform:
+  PlatformArn: arn:aws:elasticbeanstalk:us-west-2::platform/Node.js running on 64bit Amazon Linux/4.5.1
+OptionSettings:
+  aws:elasticbeanstalk:container:nodejs:
+    NodeVersion: 12.9.0
+    NodeCommand: npm run start
+  aws:elb:listener:443:
+    ListenerEnabled: true
+    InstancePort: '80'
+    SSLCertificateId: arn:aws:acm:us-west-1:809055662714:certificate/c0a3b664-195d-4e6c-bdc4-05a8a7161070
+    ListenerProtocol: HTTPS
+    InstanceProtocol: HTTP
+EnvironmentTier:
+  Type: Standard
+  Name: WebServer
+AWSConfigurationTemplateVersion: 1.1.0.0

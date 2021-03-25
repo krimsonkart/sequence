@@ -9,19 +9,28 @@
     "test": "node test.js"
   },
   "dependencies": {
+    "async-retry": "^1.3.1",
+    "aws-sdk": "^2.862.0",
+    "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
     "bunyan": "^1.8.15",
+    "convict": "^6.0.1",
+    "convict-format-with-validator": "^6.0.1",
     "cors": "^2.8.5",
+    "delay": "^5.0.0",
     "ejs": "^3.1.5",
     "express": "^4.15.2",
+    "got": "^11.3.0",
+    "json5": "^2.2.0",
     "lodash": "^4.17.20",
+    "moment": "^2.29.1",
     "pg": "^8.5.1",
     "socket.io": "^3.0.3",
-    "uuid4": "^2.0.2"
+    "uuid4": "^2.0.2",
+    "validator": "^13.5.2"
   },
   "devDependencies": {
     "prettier": "^2.2.1",
-    "got": "^11.3.0",
     "tape": "^4.7.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^4.5.0"

@@ -1,8 +1,13 @@
 const PORT = process.env.PORT || 8081;
+const logger = require('./utils/logger');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
+const { SequenceServer } = require('./sequence/game-server');
+
+logger.initializeLogger();
+const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http, {
     cors: {
@@ -10,9 +15,6 @@ const io = require('socket.io')(http, {
         methods: ['GET', 'POST'],
     },
 });
-const { SequenceServer } = require('./sequence/game-server');
-
-const app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -27,13 +29,15 @@ app.use(express.static(path.join(__dirname, 'public')))
         res.sendFile(path.join(__dirname, 'public-dashboard/build/index.html'));
     })
     .get('/api/sequence/game/:id', (req, res) => {
-        res.json(server.getGame(req.params.id));
+        server.getGame(req.params.id).then(game=>res.json(game));
     })
-    .post('/api/sequence/game', (req, res) => {
-        res.json(server.createGame(req.body));
+    .post('/api/sequence/game', async (req, res) => {
+        const gameData = await server.createGame(req.body);
+        res.json(gameData);
     })
-    .get('/api/sequence/games', (req, res) => {
-        res.json({ data: server.listGames() });
+    .get('/api/sequence/games', async (req, res) => {
+        let games = await server.listGames();
+        res.json({ data: games });
     })
     .get('/ui/*', (req, res) => {
         res.sendFile(path.join(__dirname, 'public-dashboard/build/index.html'));

@@ -137,7 +137,7 @@ const useSequence = (gameId, setGameComplete, setPlayersModalOpen) => {
 
     function setPlayersList(players) {
         setPlayers(players);
-        let currentPosition = players.findIndex(p => _.get(p,playerId) === playerId);
+        let currentPosition = players.findIndex(p => p.playerId === playerId);
         if (currentPosition !== -1) {
             setPosition(currentPosition);
         }

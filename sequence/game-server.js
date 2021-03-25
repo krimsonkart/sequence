@@ -2,9 +2,8 @@ const fs = require('fs');
 const _ = require('lodash');
 const uuid = require('uuid4');
 const gameUtils = require('./game-utils');
-const utils = require('./utils');
-
-const logger = utils.getLogger({});
+const dynamodb = require('../utils/dynamodb');
+const logger = require('../utils/logger');
 
 let DATA_FILE_PATH = __dirname + '/game.json';
 
@@ -13,7 +12,7 @@ class SequenceServer {
         this.dbClient = dbClient;
         if (fs.existsSync(DATA_FILE_PATH)) {
             const { players, games } = JSON.parse(fs.readFileSync(DATA_FILE_PATH, 'utf-8'));
-            this.games = games; //_.mapValues(games, game => Game.fromCopy(game));
+            this.games = {};//games; //_.mapValues(games, game => Game.fromCopy(game));
             this.players = players; //_.mapValues(players, p => Player.fromCopy(p));
         } else {
             this.games = {};
@@ -26,23 +25,26 @@ class SequenceServer {
         this.io = io;
         io.on('connection', socket => this.connectPlayer(socket));
     }
-    connectPlayer(socket) {
+    async connectPlayer(socket) {
         try {
             const handlers = {
-                login: this.loginUser,
+                // login: this.loginUser,
                 join: this.joinGame,
                 start: this.startGame,
                 disconnect: this.disconnect,
                 play: this.playMove,
             };
             for (const key in handlers) {
-                socket.on(key, data => {
+                socket.on(key, async data => {
                     try {
-                        handlers[key].apply(this, [socket, data]);
-                    } catch (e) {
-                        console.error(`Error processing event: ${key}`, e);
-                        socket.emit('error', { err: e });
+                        await handlers[key].apply(this, [socket, data]);
+                    } catch (err) {
+                        console.error(`Error processing event: ${key}`, err);
+                        socket.emit('error', { err });
                     } finally {
+                        if (socket.gameId) {
+                            await this.updateGame(socket.gameId).catch(err=>socket.emit('error', { err }));
+                        }
                         this.flushState();
                     }
                 });
@@ -56,14 +58,16 @@ class SequenceServer {
                 throw `User not specified`;
             }
             this.loginUser(socket, { user: { playerId, userName } });
-            // if (!gameId) {
-            //     throw `Game id not specified`;
-            // }
-            // if (!this.games[gameId]) {
-            //     throw `Invalid game`;
-            // }
-            if (this.games[gameId]) {
-                gameUtils.rejoin(this.games[gameId], playerId, socket);
+            if (!gameId) {
+                throw `Game id not specified`;
+            }
+            let game = await this.getGameState(gameId);
+            if (!game) {
+                throw `Invalid game`;
+            }
+            if (game) {
+                gameUtils.rejoin(game, playerId, socket);
+                await this.updateGame(gameId);
             }
         } catch (err) {
             logger.info(err);
@@ -74,11 +78,52 @@ class SequenceServer {
         //socket.emit('checkLogin');
     }
 
+    getGameState(gameId) {
+        if(!gameId)return ;
+        return this.games[gameId] || this.getGameFromDB(gameId);
+    }
+
+    async updateGame(gameId) {
+        let game1 = await this.getGameState(gameId);
+        if (!game1) {
+            throw `Game ${gameId} does not exist`;
+        }
+
+        let game = this.getGameStateToPersist(game1);
+        let deleteEntry;
+        if (game.status === gameUtils.GAME_STATES.COMPLETE && !game.moved) {
+            game.pk = gameUtils.SEQUENCE_COMPLETE_PK;
+            game.moved = true;
+            deleteEntry = true;
+        }
+        await dynamodb.persistDbEntry(
+            {
+                TableName: gameUtils.GAMES_TABLE,
+                Item: game,
+            },
+            ``
+        );
+        if (deleteEntry) {
+            await dynamodb.batchDeleteDbEntries(
+                [
+                    {
+                        DeleteRequest: {
+                            Key: {
+                                pk: 'sequence_games',
+                                sk: game.sk,
+                            },
+                        },
+                    },
+                ],
+                gameUtils.GAMES_TABLE
+            );
+        }
+    }
+
+    async updatePlayer(playerId) {}
+
     flushState() {
-        let mappedGames = _.mapValues(this.games, g => ({
-            ..._.omit(g, ['players', 'logger']),
-            players: g.players.map(p => _.omit(p, 'socket', 'logger')),
-        }));
+        let mappedGames = _.mapValues(this.games, this.getGameStateToPersist);
         fs.writeFileSync(
             __dirname + '/game.json',
             JSON.stringify(
@@ -92,32 +137,46 @@ class SequenceServer {
         );
     }
 
-    playMove(socket, params = {}) {
-        let currentGame = this.games[socket.gameId];
+    getGameStateToPersist(g) {
+        return {
+            ..._.omit(g, ['players', 'logger']),
+            players: g.players.map(p => _.omit(p, 'socket', 'logger')),
+        };
+    }
+
+    async playMove(socket, params = {}) {
+        let currentGame = await this.getGameState(socket.gameId);
         if (!currentGame) {
             throw 'Game does not exist';
         }
         gameUtils.play(currentGame, { ...params, playerId: socket.playerId });
     }
 
-    getGame(gameId) {
-        let game = this.games[gameId];
+    async getGame(gameId) {
+        let game = await this.getGameState(gameId);
         if (!game) {
             throw 'Game not found';
         }
         return gameUtils.getGameDetails(game);
     }
 
-    listGames() {
-        return _.values(this.games).map(game => gameUtils.getGameDetails(gameUtils.getGameDetails(game)));
+    async listGames() {
+        const games = [];
+        await dynamodb.queryAllRecords({
+            TableName: gameUtils.GAMES_TABLE,
+            KeyConditionExpression: `pk = :pk`,
+            ExpressionAttributeValues: {':pk':gameUtils.SEQUENCE_PK},
+        },item=>games.push(item))
+        return _.values(games).map(game => gameUtils.getGameDetails(gameUtils.getGameDetails(game)));
     }
 
-    disconnect(socket) {
+    async disconnect(socket) {
         const player = this.players[socket.playerId];
         if (player) {
             _.remove(this.playerSockets[socket.playerId], x => x.id === socket.id);
             // player.disconnect(socket);
-            const game = this.games[socket.gameId];
+            let game = await this.getGameState(socket.gameId);
+            // const game = this.games[socket.gameId];
             if (game) {
                 gameUtils.leave(game, player.id);
             }
@@ -134,7 +193,7 @@ class SequenceServer {
         logger.info(`Assigning ${socket.id} to ${playerId}`);
         socket.playerId = playerId;
         if (!this.players[playerId]) {
-            this.players[playerId] = { id: playerId, name:userName, games: [] };
+            this.players[playerId] = { id: playerId, name: userName, games: [] };
         }
         this.playerSockets[playerId] = this.playerSockets[playerId] || [];
         this.playerSockets[playerId].push(socket);
@@ -142,7 +201,7 @@ class SequenceServer {
         // fs.writeFileSync(__dirname + '/game.json', JSON.stringify({ games: this.games, players: this.players }));
     }
     logoutUser(socket, { user } = {}) {}
-    createGame({ game, forceCreate }) {
+    async createGame({ game, forceCreate }) {
         const gameId = game.id || this.getUniqueGameId();
         if (this.games[gameId] && !forceCreate) {
             throw `Game with ${gameId} already exists`;
@@ -150,6 +209,7 @@ class SequenceServer {
         let gameObj = { ...game, id: gameId };
         this.games[gameId] = gameUtils.newGame(gameObj);
         logger.info({ game: gameObj }, `Created`);
+        await this.updateGame(gameId);
         return { gameId };
         // this.io.emit(utils.MSG_HEADERS.NEW_GAME, { game: gameObj });
         // fs.writeFileSync(__dirname + '/game.json', JSON.stringify({ games: this.games, players: this.players }));
@@ -163,7 +223,7 @@ class SequenceServer {
         return unique;
     }
 
-    joinGame(socket, { gameId, playerId, position }) {
+    async joinGame(socket, { gameId, playerId, position }) {
         let playerCached = this.players[playerId];
         // if (!this.playerSockets[playerId]) {
         //     throw `Player is not connected`;
@@ -174,30 +234,42 @@ class SequenceServer {
         if (socket.playerId !== playerId) {
             // throw `Socket ${socket.id} not owned by ${playerId}`;
         }
-        let currentGame = this.games[gameId];
+        let currentGame = await this.getGameState(gameId);
+        // let currentGame = this.games[gameId];
         if (!currentGame) {
             throw 'Game does not exist';
         }
         gameUtils.join(currentGame, playerCached, position, socket.playerId === playerId ? socket : null);
         // this.io.in(gameId).emit('playerJoined', { player: _.omit(playerCached, 'sockets') });
     }
-    startGame(socket, { gameId }) {
-        let currentGame = this.games[gameId];
+    async startGame(socket, { gameId }) {
+        let currentGame = await this.getGameState(socket.gameId);
         if (!currentGame) {
             throw 'Game does not exist';
         }
         gameUtils.start(currentGame, socket.playerId);
         // fs.writeFileSync(__dirname + '/game.json', JSON.stringify({ games, players }));
     }
-    leaveGame(socket, { playerId, gameId }) {
-        let currentGame = this.games[gameId];
+    async leaveGame(socket, { playerId, gameId }) {
+        let currentGame = await this.getGameState(socket.gameId);
         if (!currentGame) {
             throw 'Game does not exist';
         }
         gameUtils.leave(currentGame, playerId);
     }
-    endGame() {}
-    heartBeat() {}
+    async endGame() {}
+    async heartBeat() {}
+
+    async getGameFromDB(gameId) {
+        let entry = await dynamodb.querySingle({
+            TableName: 'games',
+            Select: 'ALL_ATTRIBUTES',
+            KeyConditionExpression: 'pk = :pk AND sk = :sk',
+            ExpressionAttributeValues: { ':pk': gameUtils.SEQUENCE_PK, ':sk': gameId },
+        });
+        this.games[gameId]=entry;
+        return entry;
+    }
 }
 
 module.exports = { SequenceServer };

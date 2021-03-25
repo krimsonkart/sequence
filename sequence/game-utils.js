@@ -1,7 +1,11 @@
 const _ = require('lodash');
+const moment = require('moment');
 const GAME_STATES = { CREATED: 'created', IN_PROGRESS: 'inProgress', COMPLETE: 'complete' };
 const utils = require('./utils');
 const boardUtils = require('./board-utils');
+let SEQUENCE_PK = 'sequence_games';
+let SEQUENCE_COMPLETE_PK = 'sequence_games#st:complete';
+let GAMES_TABLE = 'games';
 
 const NUM_CARDS = {
     2: 7,
@@ -250,7 +254,7 @@ function play(game, { playerId, position, card, action }) {
     });
 }
 function newGame({ id, numPlayers, name, adminUser, numTeams }) {
-    const game = {};
+    const game = { pk: 'sequence_games', sk: id };
     game.board = boardUtils.newBoard();
     game.id = id;
     game.name = name;
@@ -262,6 +266,7 @@ function newGame({ id, numPlayers, name, adminUser, numTeams }) {
     game.adminUsers = [];
     game.state = GAME_STATES.CREATED;
     game.numCards = NUM_CARDS[game.numPlayers];
+    game.ct = moment().utc().format();
     game.history = [];
     // Custom objects
     game.players = [];
@@ -275,4 +280,16 @@ function getGameDetails(game) {
     };
 }
 
-module.exports = { newGame, start, play, join, leave, rejoin, getGameDetails };
+module.exports = {
+    newGame,
+    start,
+    play,
+    join,
+    leave,
+    rejoin,
+    getGameDetails,
+    GAME_STATES,
+    SEQUENCE_COMPLETE_PK,
+    SEQUENCE_PK,
+    GAMES_TABLE,
+};

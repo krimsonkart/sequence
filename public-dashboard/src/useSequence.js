@@ -228,7 +228,7 @@ const useSequence = (gameId, setGameComplete, setPlayersModalOpen) => {
         if (!socketRef.current) {
             createSocket();
         }
-        socketRef.current.emit('join', { position, gameId, playerId });
+        socketRef.current.emit('join', { position, gameId, playerId, playerName: userName });
     };
     const startGame = () => {
         socketRef.current.emit('start', { gameId });

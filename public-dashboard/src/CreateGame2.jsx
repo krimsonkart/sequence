@@ -22,7 +22,7 @@ const Home = () => {
         axios
             .post(
                 `${SOCKET_SERVER_URL}api/sequence/game`,
-                { game: { ...form, adminUser: userId } },
+                { game: { ...form, adminUser: userId, adminUserName: userName } },
                 { headers: { Accept: 'application/json' } }
             )
             .then(response => {
@@ -51,7 +51,7 @@ const Home = () => {
                         <Form.Label htmlFor="numPlayers">Number of players</Form.Label>
                     </Col>
                     <Col>
-                        <input id="numPlayers" name="numPlayers" type="text" value="2"/>
+                        <input id="numPlayers" name="numPlayers" type="text" value="2" />
                     </Col>
                 </Row>
                 <Row className="align-items-start">

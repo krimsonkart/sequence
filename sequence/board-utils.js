@@ -207,7 +207,7 @@ function isDead(board, cardIndex) {
 }
 
 function getSequences(board, team) {
-    return _.get(board.teamSequences, [team], 0);
+    return _.get(board.teamSequences, [team, 'length'], 0);
 }
 
 function placeCoin(board, position, cardIndex, team) {

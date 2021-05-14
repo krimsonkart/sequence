@@ -249,14 +249,17 @@ function play(game, { playerId, position, card, action }) {
         hand: currentPlayer.hand,
     });
 }
-function newGame({ id, numPlayers, name, adminUser, numTeams }) {
+function newGame({ id, numPlayers, name, adminUser, adminUserName, numTeams }) {
     const game = {};
     game.board = boardUtils.newBoard();
     game.id = id;
+    game.pk = 'game_state';
+    game.sk = id;
     game.name = name;
     game.numPlayers = Number(numPlayers);
     game.numTeams = Number(numTeams);
     game.adminUsers = [adminUser];
+    game.adminUserName = adminUserName;
     game.turn = 0;
     game.deckPosition = 0;
     game.adminUsers = [];
@@ -275,4 +278,4 @@ function getGameDetails(game) {
     };
 }
 
-module.exports = { newGame, start, play, join, leave, rejoin, getGameDetails };
+module.exports = { newGame, start, play, join, leave, rejoin, getGameDetails, GAME_STATES };

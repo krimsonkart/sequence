@@ -1,0 +1,266 @@
+{
+  "IS_LAMBDA_RUN": {
+    "format": "Boolean",
+    "default": false
+  },
+  "DYNAMODB_CONFIG": {
+    "region": {
+      "format": "String",
+      "default": "us-west-2"
+    },
+    "endpoint": {
+      "format": "endpoint",
+      "default": null
+    }
+  },
+  "S3_CONFIG": {
+    "region": {
+      "format": "String",
+      "default": "us-west-2"
+    },
+    "endpoint": {
+      "format": "endpoint",
+      "default": null
+    },
+    "s3ForcePathStyle": {
+      "format": "Boolean",
+      "default": false
+    }
+  },
+  "SQS_CONFIG": {
+    "region": {
+      "format": "String",
+      "default": "us-west-2"
+    },
+    "endpoint": {
+      "format": "endpoint",
+      "default": null
+    }
+  },
+  "LAMBDA_CONFIG": {
+    "region": {
+      "format": "String",
+      "default": "us-west-2"
+    },
+    "endpoint": {
+      "format": "endpoint",
+      "default": null
+    }
+  },
+  "SECRETS_MANAGER_CONFIG": {
+    "region": {
+      "format": "String",
+      "default": "us-west-2"
+    },
+    "endpoint": {
+      "format": "endpoint",
+      "default": "secretsmanager.us-west-2.amazonaws.com"
+    }
+  },
+  "SES_CONFIG": {
+    "region": {
+      "format": "String",
+      "default": "us-west-2"
+    },
+    "endpoint": {
+      "format": "endpoint",
+      "default": null
+    }
+  },
+  "SNS_CONFIG": {
+    "region": {
+      "format": "String",
+      "default": "us-west-2"
+    },
+    "endpoint": {
+      "format": "endpoint",
+      "default": null
+    }
+  },
+  "TIMESTREAM_CONFIG": {
+    "region": {
+      "format": "String",
+      "default": "us-west-2"
+    },
+    "endpoint": {
+      "format": "endpoint",
+      "default": null
+    }
+  },
+  "PRODUCTIV_DATA_BUCKET": {
+    "format": "String",
+    "default": "productiv-data-dev"
+  },
+  "ACTIVITY_CACHE_BUCKET": {
+    "format": "String",
+    "default": "alid-activity-cache-dev"
+  },
+  "DAILY_SUMMARY_BUCKET": {
+    "format": "String",
+    "default": "alid-daily-summary-dev"
+  },
+  "RAW_EVENTS_BUCKET": {
+    "format": "String",
+    "default": "productiv-raw-events-us-west-2-912625699000"
+  },
+  "SQS_URL": {
+    "format": "String",
+    "default": "https://sqs.us-west-2.amazonaws.com/912625699000/"
+  },
+  "STATE_MACHINES_ARN_PREFIX": {
+    "format": "String",
+    "default": "arn:aws:states:us-west-2:912625699000:stateMachine:"
+  },
+  "STATE_MACHINES_CONFIG": {
+    "region": {
+      "format": "String",
+      "default": "us-west-2"
+    },
+    "endpoint": {
+      "format": "endpoint",
+      "default": null
+    }
+  },
+  "CLOUD_WATCH_CONFIG": {
+    "region": {
+      "format": "String",
+      "default": "us-west-2"
+    },
+    "endpoint": {
+      "format": "endpoint",
+      "default": null
+    },
+    "sslEnabled": {
+      "format": "Boolean",
+      "default": true
+    }
+  },
+  "COGNITO_CONFIG": {
+    "region": {
+      "format": "String",
+      "default": "us-west-2"
+    },
+    "endpoint": {
+      "format": "endpoint",
+      "default": null
+    }
+  },
+  "API_GATEWAY_CONFIG": {
+    "region": {
+      "format": "String",
+      "default": "us-west-2"
+    },
+    "endpoint": {
+      "format": "endpoint",
+      "default": null
+    }
+  },
+  "TABLE_NAMES": {
+    "game_data": {
+      "format": "String",
+      "default": "game_data"
+    }
+  },
+  "SHOULD_PUSH_METRICS": {
+    "format": "Boolean",
+    "default": "true"
+  },
+  "LOG_LEVEL": {
+    "format": "String",
+    "default": "debug",
+    "env": "LOG_LEVEL"
+  },
+  "AUDIT_LOG_TO_CLOUDWATCH": {
+    "format": "Boolean",
+    "default": false
+  },
+  "ATHENA_CONFIG": {
+    "region": {
+      "format": "String",
+      "default": "us-west-2"
+    }
+  },
+  "COMPRESSION_ENABLED_CIDS": {
+    "format": "Array",
+    "default": ["testcid"]
+  },
+  "COMPRESSION_ENABLED_FOLDERS": {
+    "format": "Array",
+    "default": [
+      "alid-daily-summary-dev",
+      "alid-activity-cache-dev",
+      "user-prov-info",
+      "user-profiles",
+      "collaboration-graphs",
+      "resource-actions",
+      "resource-stats",
+      "/rollups/"
+    ]
+  },
+  "ELASTIC_SEARCH_CONFIG": {
+    "region": {
+      "format": "String",
+      "default": "us-west-2"
+    },
+    "endpoint": {
+      "format": "endpoint",
+      "default": "search-customer-domain-cd6qkq7kfwh2swaethmb33aw4u.us-west-2.es.amazonaws.com"
+    }
+  },
+  "SHARED_SECRETS_SERVICE_ROLE":  {
+    "format": "String",
+    "default": ""
+  },
+  "SHARED_SES_SERVICE_ROLE":  {
+    "format": "String",
+    "default": ""
+  },
+  "SHARED_REDIS_SERVICE_ROLE":  {
+    "format": "String",
+    "default": ""
+  },
+  "SHARED_TIMESTREAM_SERVICE_ROLE":  {
+    "format": "String",
+    "default": ""
+  },
+  "SCRATCH_BUCKET": {
+    "format": "String",
+    "default": "productiv-scratch-us-west-2-912625699000"
+  },
+  "SHOULD_STORE_LARGE_SQS_MSGS": {
+    "format": "Boolean",
+    "default": true
+  },
+  "SHOULD_SEND_EMAIL_TO_EVERYONE": {
+    "format": "Boolean",
+    "default": false
+  },
+  "ENABLE_REDIS": {
+    "format": "Boolean",
+    "default": true
+  },
+  "LOG_CONNECTOR_DATA_BUCKET": {
+    "format": "String",
+    "default": "productiv-data-dev/log-connector-data"
+  },
+  "APP_URL": {
+    "format": "String",
+    "default": "https://app.dev.productiv.com/"
+  },
+  "APPSTORE_URL": {
+    "format": "String",
+    "default": "https://appstore.dev.productiv.com/"
+  },
+  "WEBHOOK_MAP_LOCATION_V2": {
+      "format": "String",
+      "default": "productiv-data-dev/webhook-map"
+  },
+  "WEBHOOK_DATA_BUCKET":  {
+    "format": "String",
+    "default": "productiv-data-dev/webhooks-data"
+  },
+  "SNS_TOPIC_PREFIX":  {
+    "format": "String",
+    "default": "arn:aws:sns:us-west-2:912625699000:"
+  }
+}

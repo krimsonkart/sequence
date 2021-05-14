@@ -28,8 +28,9 @@ app.use(express.static(path.join(__dirname, 'public')))
     .get('/', (req, res) => {
         res.sendFile(path.join(__dirname, 'public-dashboard/build/index.html'));
     })
-    .get('/api/sequence/game/:id', (req, res) => {
-        server.getGame(req.params.id).then(game=>res.json(game));
+    .get('/api/sequence/game/:id', async (req, res) => {
+        let game = await server.getGame(req.params.id);
+        res.json(game);
     })
     .post('/api/sequence/game', async (req, res) => {
         const gameData = await server.createGame(req.body);

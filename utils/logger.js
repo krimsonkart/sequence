@@ -1,5 +1,4 @@
 const bunyan = require('bunyan');
-const awsConfig = require('./config');
 const { LoggerBuilder } = require('./logger-builder');
 
 class Logger {
@@ -10,7 +9,7 @@ class Logger {
             streams: [
                 {
                     stream: process.stdout,
-                    level: awsConfig.get('LOG_LEVEL'), // Defaults to debug, on production set to info
+                    level: 'debug', //awsConfig.get('LOG_LEVEL'), // Defaults to debug, on production set to info
                 },
             ],
             serializers: { err: errSerializer },

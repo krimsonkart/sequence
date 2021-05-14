@@ -40,6 +40,10 @@ app.use(express.static(path.join(__dirname, 'public')))
         let games = await server.listGames();
         res.json({ data: games });
     })
+    .get('/api/sequence/refreshcache', async (req, res) => {
+        let games = await server.refreshCache();
+        res.json({ data: games });
+    })
     .get('/ui/*', (req, res) => {
         res.sendFile(path.join(__dirname, 'public-dashboard/build/index.html'));
     });
@@ -57,5 +61,4 @@ app.use(express.static(path.join(__dirname, 'public')))
         res.sendFile(path.join(__dirname, 'public-dashboard/public/index.html'));
     });
 */
-server.start(io);
-http.listen(PORT, () => console.log(`Listening on ${PORT}`));
+server.start(io).then(() => http.listen(PORT, () => console.log(`Listening on ${PORT}`)));

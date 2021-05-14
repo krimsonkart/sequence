@@ -262,7 +262,6 @@ function newGame({ id, numPlayers, name, adminUser, adminUserName, numTeams }) {
     game.adminUserName = adminUserName;
     game.turn = 0;
     game.deckPosition = 0;
-    game.adminUsers = [];
     game.state = GAME_STATES.CREATED;
     game.numCards = NUM_CARDS[game.numPlayers];
     game.history = [];
@@ -273,7 +272,7 @@ function newGame({ id, numPlayers, name, adminUser, adminUserName, numTeams }) {
 
 function getGameDetails(game) {
     return {
-        ..._.pick(game, ['id', 'turn', 'numPlayers', 'numTeams', 'state', 'numCards', 'board', 'winner', 'adminUsers']),
+        ..._.pick(game, ['id', 'name', 'turn', 'numPlayers', 'numTeams', 'state', 'numCards', 'board', 'winner', 'adminUserName']),
         players: game.players.map(p => _.pick(p, ['playerId', 'email', 'name'])),
     };
 }

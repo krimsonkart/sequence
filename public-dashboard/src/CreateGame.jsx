@@ -50,7 +50,7 @@ const Home = () => {
     }
 
     function handleCreateGame() {
-        let game = { name, numPlayers, numTeams, adminUser: userId };
+        let game = { name, numPlayers, numTeams, adminUser: userId, adminUserName: userName };
         fetch(`${SOCKET_SERVER_URL}api/sequence/game`, {
             headers: {
                 Accept: 'application/json',

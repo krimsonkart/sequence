@@ -2,10 +2,8 @@ const fs = require('fs');
 const _ = require('lodash');
 const uuid = require('uuid4');
 const gameUtils = require('./game-utils');
-const utils = require('./utils');
 const dynamo = require('../utils/dynamodb');
-
-const logger = utils.getLogger({});
+const logger = require('../utils/logger');
 
 let DATA_FILE_PATH = __dirname + '/game.json';
 let TableName = 'sequence_games';
@@ -25,6 +23,12 @@ class SequenceServer {
         this.playerSockets = {};
     }
     async start(io) {
+        await this.refreshCache();
+        this.io = io;
+        io.on('connection', socket => this.connectPlayer(socket));
+    }
+
+    async refreshCache() {
         this.games = {};
         await dynamo.queryAllRecords(
             {
@@ -37,9 +41,9 @@ class SequenceServer {
             },
             entry => (this.games[entry.sk] = entry)
         );
-        this.io = io;
-        io.on('connection', socket => this.connectPlayer(socket));
+        logger.log(`Found ${_.keys(this.games).length} games`);
     }
+
     async connectPlayer(socket) {
         try {
             const handlers = {

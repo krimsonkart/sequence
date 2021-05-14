@@ -62,7 +62,7 @@ const Sequence = props => {
     };
     function getTeamCoin(board, i, j) {
         let coin = board && board.selectedPositions[`${i}-${j}`];
-        return coin !== undefined && coin !== '*' && process.env.PUBLIC_URL + '/img/coins/' + TEAM_COINS[coin];
+        return coin !== undefined && coin !== '*' && `/img/coins/${TEAM_COINS[coin]}`;
     }
 
     const handlePlaceCard = (i, j, card) => {

@@ -53,7 +53,7 @@ const Home = () => {
                 <Container>
                     {games.map(game => (
                         <Row style={{ paddingLeft: 0, paddingRight: 0, paddingTop: 10, paddingBottom: 10 }}>
-                            <Col>{game.id}</Col>
+                            <Col>{game.name}</Col>
                             <Col>
                                 <Button href={`/ui/sequence/game/${game.id}`}>Join Game</Button>
                             </Col>

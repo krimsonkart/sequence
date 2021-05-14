@@ -41,8 +41,8 @@ app.use(express.static(path.join(__dirname, 'public')))
         res.json({ data: games });
     })
     .get('/api/sequence/refreshcache', async (req, res) => {
-        let games = await server.refreshCache();
-        res.json({ data: games });
+        await server.refreshCache();
+        res.json({ success: true });
     })
     .get('/ui/*', (req, res) => {
         res.sendFile(path.join(__dirname, 'public-dashboard/build/index.html'));

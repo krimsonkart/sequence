@@ -7,6 +7,7 @@ const logger = require('../utils/logger');
 
 let DATA_FILE_PATH = __dirname + '/game.json';
 let TableName = 'sequence_games';
+let writeLock = false;
 
 class SequenceServer {
     constructor(dbClient) {
@@ -29,19 +30,28 @@ class SequenceServer {
     }
 
     async refreshCache() {
-        this.games = {};
-        await dynamo.queryAllRecords(
-            {
-                TableName,
-                Select: 'ALL_ATTRIBUTES',
-                KeyConditionExpression: 'pk=:pk',
-                ExpressionAttributeValues: {
-                    ':pk': `game_state`,
+        if (writeLock) {
+            throw `Locked to write`;
+        }
+        writeLock = true;
+        try {
+            const games = {};
+            await dynamo.queryAllRecords(
+                {
+                    TableName,
+                    Select: 'ALL_ATTRIBUTES',
+                    KeyConditionExpression: 'pk=:pk',
+                    ExpressionAttributeValues: {
+                        ':pk': `game_state`,
+                    },
                 },
-            },
-            entry => (this.games[entry.sk] = entry)
-        );
-        logger.log(`Found ${_.keys(this.games).length} games`);
+                entry => (games[entry.sk] = entry)
+            );
+            this.games = games;
+            logger.log(`Found ${_.keys(this.games).length} games`);
+        } finally {
+            writeLock = false;
+        }
     }
 
     async connectPlayer(socket) {
@@ -192,19 +202,27 @@ class SequenceServer {
     }
 
     async persistState(gameId) {
-        logger.debug({ gameId }, `Persisting state`);
-        let game = this.games[gameId];
-        let moveGame = false;
-        if (game.pk === 'game_state' && game.state === gameUtils.GAME_STATES.COMPLETE) {
-            moveGame = true;
-            game.pk = 'game_state#complete';
+        if (writeLock) {
+            throw `Locked to write`;
         }
-        await dynamo.persistDbEntry({
-            TableName,
-            Item: this.mapGameState(game),
-        });
-        if (moveGame) {
-            await dynamo.deleteDbEntry({ TableName, Key: { pk: 'game_state', sk: game.sk } });
+        writeLock = true;
+        try {
+            logger.debug({ gameId }, `Persisting state`);
+            let game = this.games[gameId];
+            let moveGame = false;
+            if (game.pk === 'game_state' && game.state === gameUtils.GAME_STATES.COMPLETE) {
+                moveGame = true;
+                game.pk = 'game_state#complete';
+            }
+            await dynamo.persistDbEntry({
+                TableName,
+                Item: this.mapGameState(game),
+            });
+            if (moveGame) {
+                await dynamo.deleteDbEntry({ TableName, Key: { pk: 'game_state', sk: game.sk } });
+            }
+        } finally {
+            writeLock = false;
         }
     }
 
